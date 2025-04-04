@@ -23,7 +23,7 @@ const NotFound = () => {
         className="text-white border-white hover:bg-white hover:text-discusy-blue"
         asChild
       >
-        <a href="/" className="flex items-center gap-2">
+        <a href="/dashboard" className="flex items-center gap-2">
           <Home size={18} />
           Return to Home
         </a>
