@@ -5,8 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import DiscusyLogo from '@/components/DiscusyLogo';
-import AuthDivider from '@/components/AuthDivider';
-import SocialButton from '@/components/SocialButton';
 
 type AuthMode = 'sso' | 'login';
 
@@ -26,11 +24,6 @@ const Auth: React.FC = () => {
 
   const handleLoginSubmit = () => {
     console.log('Logging in with:', email, password);
-    navigate('/dashboard');
-  };
-
-  const handleSocialLogin = (provider: string) => {
-    console.log(`Logging in with ${provider}`);
     navigate('/dashboard');
   };
   
@@ -70,7 +63,7 @@ const Auth: React.FC = () => {
                 
                 <button 
                   className="text-white hover:underline w-full text-center mt-4"
-                  onClick={() => setAuthMode('login')}
+                  onClick={() => navigate('/school-info')}
                 >
                   I do not know my school domain
                 </button>
@@ -135,14 +128,6 @@ const Auth: React.FC = () => {
               </div>
             </div>
           )}
-          
-          <AuthDivider />
-          
-          <div className="flex justify-center space-x-4">
-            <SocialButton type="facebook" onClick={() => handleSocialLogin('facebook')} />
-            <SocialButton type="google" onClick={() => handleSocialLogin('google')} />
-            <SocialButton type="apple" onClick={() => handleSocialLogin('apple')} />
-          </div>
         </div>
       </div>
     </div>

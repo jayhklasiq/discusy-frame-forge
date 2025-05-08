@@ -1,11 +1,14 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { MessageSquare, Users, Book, BookOpen } from 'lucide-react';
 import NavigationTabs from '@/components/NavigationTabs';
 
 const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
       {/* Header */}
@@ -37,7 +40,11 @@ const Dashboard: React.FC = () => {
                 </CardContent>
               </Card>
             ))}
-            <Button variant="outline" className="w-full flex items-center justify-center gap-2">
+            <Button 
+              variant="outline" 
+              className="w-full flex items-center justify-center gap-2"
+              onClick={() => navigate('/create-chat')}
+            >
               <MessageSquare size={18} />
               <span>Create New Chat</span>
             </Button>
@@ -60,7 +67,11 @@ const Dashboard: React.FC = () => {
                 </CardContent>
               </Card>
             ))}
-            <Button variant="outline" className="w-full flex items-center justify-center gap-2">
+            <Button 
+              variant="outline" 
+              className="w-full flex items-center justify-center gap-2"
+              onClick={() => navigate('/courses')}
+            >
               <Book size={18} />
               <span>View All Courses</span>
             </Button>

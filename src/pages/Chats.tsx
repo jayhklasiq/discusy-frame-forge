@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -7,14 +8,88 @@ import { Search, Plus, MessageSquare, Users } from 'lucide-react';
 import NavigationTabs from '@/components/NavigationTabs';
 import { Input } from '@/components/ui/input';
 
+interface ChatData {
+  id: number;
+  title: string;
+  lastMessage: string;
+  time: string;
+  unread: number;
+  type: 'regular' | 'course';
+}
+
 const Chats: React.FC = () => {
+  const navigate = useNavigate();
+  
+  const allChats: ChatData[] = [
+    {
+      id: 1,
+      title: "Study Group 1",
+      lastMessage: "Hey everyone, when's our next meeting?",
+      time: "2h ago",
+      unread: 3,
+      type: 'regular'
+    },
+    {
+      id: 2,
+      title: "Study Group 2",
+      lastMessage: "I finished the assignment, anyone need help?",
+      time: "3h ago",
+      unread: 1,
+      type: 'regular'
+    },
+    {
+      id: 3,
+      title: "Study Group 3",
+      lastMessage: "Let's meet in the library at 5pm",
+      time: "Yesterday",
+      unread: 0,
+      type: 'regular'
+    },
+    {
+      id: 4,
+      title: "Study Group 4",
+      lastMessage: "Can someone share their notes from today?",
+      time: "2d ago",
+      unread: 2,
+      type: 'regular'
+    }
+  ];
+  
+  const courseChats: ChatData[] = [
+    {
+      id: 5,
+      title: "CS101 Class Chat",
+      lastMessage: "Prof: Don't forget your homework is due tomorrow!",
+      time: "5h ago",
+      unread: 1,
+      type: 'course'
+    },
+    {
+      id: 6,
+      title: "CS201 Class Chat",
+      lastMessage: "Does anyone understand question 3?",
+      time: "1d ago",
+      unread: 0,
+      type: 'course'
+    }
+  ];
+  
+  const handleChatClick = (chatId: number) => {
+    navigate(`/chats/${chatId}`);
+  };
+  
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
       {/* Header */}
       <header className="bg-discusy-blue text-white p-4">
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-bold">Group Chats</h1>
-          <Button variant="ghost" size="icon" className="text-white">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="text-white"
+            onClick={() => navigate('/create-chat')}
+          >
             <Plus size={24} />
           </Button>
         </div>
@@ -40,22 +115,28 @@ const Chats: React.FC = () => {
           </TabsList>
           
           <TabsContent value="all" className="space-y-4">
-            {[1, 2, 3, 4].map((item) => (
-              <Card key={item} className="shadow-sm">
+            {allChats.map((chat) => (
+              <Card 
+                key={chat.id} 
+                className="shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                onClick={() => handleChatClick(chat.id)}
+              >
                 <CardContent className="p-3">
                   <div className="flex items-center">
                     <div className="w-10 h-10 rounded-full bg-discusy-blue flex items-center justify-center text-white mr-3">
                       <MessageSquare size={18} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-medium">Study Group {item}</h3>
-                      <p className="text-sm text-gray-500 truncate">Last message: Hey everyone, when's our next meeting?</p>
+                      <h3 className="font-medium">{chat.title}</h3>
+                      <p className="text-sm text-gray-500 truncate">{chat.lastMessage}</p>
                     </div>
                     <div className="flex flex-col items-end">
-                      <span className="text-xs text-gray-500 mb-1">2h ago</span>
-                      <span className="bg-discusy-pink text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                        3
-                      </span>
+                      <span className="text-xs text-gray-500 mb-1">{chat.time}</span>
+                      {chat.unread > 0 && (
+                        <span className="bg-discusy-pink text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                          {chat.unread}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </CardContent>
@@ -64,22 +145,28 @@ const Chats: React.FC = () => {
           </TabsContent>
           
           <TabsContent value="course" className="space-y-4">
-            {[1, 2].map((item) => (
-              <Card key={item} className="shadow-sm">
+            {courseChats.map((chat) => (
+              <Card 
+                key={chat.id} 
+                className="shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                onClick={() => handleChatClick(chat.id)}
+              >
                 <CardContent className="p-3">
                   <div className="flex items-center">
                     <div className="w-10 h-10 rounded-full bg-discusy-green flex items-center justify-center text-white mr-3">
                       <Users size={18} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-medium">CS101 Class Chat</h3>
-                      <p className="text-sm text-gray-500 truncate">Prof: Don't forget your homework is due tomorrow!</p>
+                      <h3 className="font-medium">{chat.title}</h3>
+                      <p className="text-sm text-gray-500 truncate">{chat.lastMessage}</p>
                     </div>
                     <div className="flex flex-col items-end">
-                      <span className="text-xs text-gray-500 mb-1">5h ago</span>
-                      <span className="bg-discusy-green text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                        1
-                      </span>
+                      <span className="text-xs text-gray-500 mb-1">{chat.time}</span>
+                      {chat.unread > 0 && (
+                        <span className="bg-discusy-green text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                          {chat.unread}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </CardContent>
@@ -90,7 +177,11 @@ const Chats: React.FC = () => {
       </div>
 
       <div className="fixed bottom-20 right-6">
-        <Button size="icon" className="h-12 w-12 rounded-full bg-discusy-blue hover:bg-discusy-blue/90 shadow-lg">
+        <Button 
+          size="icon" 
+          className="h-12 w-12 rounded-full bg-discusy-blue hover:bg-discusy-blue/90 shadow-lg"
+          onClick={() => navigate('/create-chat')}
+        >
           <Plus size={24} />
         </Button>
       </div>
