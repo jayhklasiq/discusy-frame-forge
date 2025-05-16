@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   Card,
@@ -38,8 +37,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/navigation-menu';
-import { BookOpen, Plus, Search, Filter } from 'lucide-react';
+} from '@/components/ui/select';
+import { BookOpen, Plus, Search, Filter, Pencil, Eye } from 'lucide-react';
 import { AdminCourse } from '@/types/admin';
 import { useForm } from 'react-hook-form';
 
@@ -202,11 +201,11 @@ const AdminCourses: React.FC = () => {
                       <div className="flex gap-2">
                         <Button variant="outline" size="sm" className="h-8 w-8 p-0">
                           <span className="sr-only">Edit</span>
-                          <pencil className="h-4 w-4" />
+                          <Pencil className="h-4 w-4" />
                         </Button>
                         <Button variant="outline" size="sm" className="h-8 w-8 p-0">
                           <span className="sr-only">View</span>
-                          <eye className="h-4 w-4" />
+                          <Eye className="h-4 w-4" />
                         </Button>
                       </div>
                     </TableCell>
@@ -321,14 +320,19 @@ const AdminCourses: React.FC = () => {
                     <FormItem>
                       <FormLabel>Status</FormLabel>
                       <FormControl>
-                        <select
-                          className="w-full border border-gray-200 rounded-md p-2"
-                          {...field}
+                        <Select 
+                          value={field.value} 
+                          onValueChange={field.onChange}
                         >
-                          <option value="upcoming">Upcoming</option>
-                          <option value="active">Active</option>
-                          <option value="completed">Completed</option>
-                        </select>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select status" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="upcoming">Upcoming</SelectItem>
+                            <SelectItem value="active">Active</SelectItem>
+                            <SelectItem value="completed">Completed</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
