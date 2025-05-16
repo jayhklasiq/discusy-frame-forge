@@ -25,6 +25,15 @@ import InstructorCourses from "./pages/InstructorCourses";
 import InstructorChats from "./pages/InstructorChats";
 import InstructorProfile from "./pages/InstructorProfile";
 
+// Admin pages
+import AdminLayout from "./components/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminCourses from "./pages/admin/Courses";
+import AdminInstructors from "./pages/admin/Instructors";
+import AdminStudents from "./pages/admin/Students";
+import AdminDepartments from "./pages/admin/Departments";
+import AdminSettings from "./pages/admin/Settings";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -54,6 +63,17 @@ const App = () => (
           <Route path="/instructor/courses" element={<InstructorCourses />} />
           <Route path="/instructor/chats" element={<InstructorChats />} />
           <Route path="/instructor/profile" element={<InstructorProfile />} />
+          
+          {/* Admin routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="courses" element={<AdminCourses />} />
+            <Route path="instructors" element={<AdminInstructors />} />
+            <Route path="students" element={<AdminStudents />} />
+            <Route path="departments" element={<AdminDepartments />} />
+            <Route path="settings" element={<AdminSettings />} />
+          </Route>
           
           <Route path="*" element={<NotFound />} />
         </Routes>
