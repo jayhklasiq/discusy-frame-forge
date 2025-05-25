@@ -3,13 +3,15 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { BookOpen, MessageSquare, Clock } from 'lucide-react';
 
-const StatsCard: React.FC = () => {
-  const stats = [
-    { label: "Courses", value: "4", icon: BookOpen },
-    { label: "Chats", value: "12", icon: MessageSquare },
-    { label: "Study Hours", value: "48", icon: Clock }
-  ];
+interface StatsCardProps {
+  stats: {
+    label: string;
+    value: string;
+    icon: React.ForwardRefExoticComponent<any>;
+  }[];
+}
 
+const StatsCard: React.FC<StatsCardProps> = ({ stats }) => {
   return (
     <Card className="shadow-sm mb-6">
       <CardContent className="p-4">

@@ -3,15 +3,20 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Edit } from 'lucide-react';
-import { getCurrentUser } from '@/utils/dataLoader';
 
 interface ProfileCardProps {
+  user: {
+    name: string;
+    email: string;
+    avatar: string;
+    university: string;
+    major: string;
+    yearOfStudy: string;
+  };
   onEditProfile: () => void;
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ onEditProfile }) => {
-  const user = getCurrentUser();
-
+const ProfileCard: React.FC<ProfileCardProps> = ({ user, onEditProfile }) => {
   return (
     <Card className="shadow-sm mb-6">
       <CardHeader className="pb-0">
