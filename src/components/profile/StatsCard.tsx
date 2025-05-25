@@ -1,19 +1,15 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { LucideIcon } from 'lucide-react';
+import { BookOpen, MessageSquare, Clock } from 'lucide-react';
 
-interface StatItem {
-  label: string;
-  value: string;
-  icon: LucideIcon;
-}
+const StatsCard: React.FC = () => {
+  const stats = [
+    { label: "Courses", value: "4", icon: BookOpen },
+    { label: "Chats", value: "12", icon: MessageSquare },
+    { label: "Study Hours", value: "48", icon: Clock }
+  ];
 
-interface StatsCardProps {
-  stats: StatItem[];
-}
-
-const StatsCard: React.FC<StatsCardProps> = ({ stats }) => {
   return (
     <Card className="shadow-sm mb-6">
       <CardContent className="p-4">

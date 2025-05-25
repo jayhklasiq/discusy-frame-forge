@@ -18,76 +18,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Users, Search, Filter } from 'lucide-react';
-import { AdminStudent } from '@/types/admin';
+import { getStudents } from '@/utils/dataLoader';
 
 const AdminStudents: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterYear, setFilterYear] = useState<string>('all');
   
-  // Mock data for demonstration
-  const students: AdminStudent[] = [
-    {
-      id: 1,
-      name: 'John Smith',
-      email: 'john.smith@university.edu',
-      year: '3rd year',
-      degree: 'Computer Science',
-      department: 'Computer Science',
-      enrolledCourses: 4,
-      activeChats: 6,
-      joinedDate: '2023-09-01',
-      status: 'active'
-    },
-    {
-      id: 2,
-      name: 'Emma Johnson',
-      email: 'emma.johnson@university.edu',
-      year: '2nd year',
-      degree: 'Computer Science',
-      department: 'Computer Science',
-      enrolledCourses: 5,
-      activeChats: 4,
-      joinedDate: '2022-09-01',
-      status: 'active'
-    },
-    {
-      id: 3,
-      name: 'Michael Brown',
-      email: 'michael.brown@university.edu',
-      year: '4th year',
-      degree: 'Computer Science',
-      department: 'Computer Science',
-      enrolledCourses: 3,
-      activeChats: 5,
-      joinedDate: '2021-09-01',
-      status: 'active'
-    },
-    {
-      id: 4,
-      name: 'Olivia Davis',
-      email: 'olivia.davis@university.edu',
-      year: '1st year',
-      degree: 'Computer Engineering',
-      department: 'Engineering',
-      enrolledCourses: 6,
-      activeChats: 3,
-      joinedDate: '2024-01-15',
-      status: 'active'
-    },
-    {
-      id: 5,
-      name: 'William Wilson',
-      email: 'william.wilson@university.edu',
-      year: '3rd year',
-      degree: 'Information Systems',
-      department: 'Computer Science',
-      enrolledCourses: 0,
-      activeChats: 0,
-      joinedDate: '2022-09-01',
-      status: 'inactive'
-    },
-  ];
+  const students = getStudents();
 
   const filteredStudents = students
     .filter(student => 

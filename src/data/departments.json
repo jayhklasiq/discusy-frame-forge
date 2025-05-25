@@ -1,0 +1,65 @@
+
+{
+  "departments": [
+    {
+      "id": 1,
+      "name": "Computer Science",
+      "code": "CS",
+      "description": "Department of Computer Science and Software Engineering",
+      "headOfDepartment": "Prof. Williams",
+      "totalCourses": 12,
+      "totalInstructors": 8,
+      "totalStudents": 240
+    },
+    {
+      "id": 2,
+      "name": "Business Administration",
+      "code": "BUS",
+      "description": "Department of Business Administration and Management",
+      "headOfDepartment": "Prof. Johnson",
+      "totalCourses": 15,
+      "totalInstructors": 10,
+      "totalStudents": 320
+    },
+    {
+      "id": 3,
+      "name": "Engineering",
+      "code": "ENG",
+      "description": "Department of Engineering and Applied Sciences",
+      "headOfDepartment": "Prof. Smith",
+      "totalCourses": 18,
+      "totalInstructors": 12,
+      "totalStudents": 350
+    },
+    {
+      "id": 4,
+      "name": "Arts",
+      "code": "ART",
+      "description": "Department of Arts and Humanities",
+      "headOfDepartment": "Prof. Davis",
+      "totalCourses": 14,
+      "totalInstructors": 9,
+      "totalStudents": 180
+    },
+    {
+      "id": 5,
+      "name": "Medicine",
+      "code": "MED",
+      "description": "Department of Medicine and Health Sciences",
+      "headOfDepartment": "Prof. Wilson",
+      "totalCourses": 20,
+      "totalInstructors": 15,
+      "totalStudents": 150
+    },
+    {
+      "id": 6,
+      "name": "Law",
+      "code": "LAW",
+      "description": "Department of Law and Legal Studies",
+      "headOfDepartment": "Prof. Taylor",
+      "totalCourses": 10,
+      "totalInstructors": 7,
+      "totalStudents": 120
+    }
+  ]
+}

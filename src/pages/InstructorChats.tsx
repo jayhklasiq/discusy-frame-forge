@@ -7,16 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Search, Plus, MessageSquare, Users, UserSquare } from 'lucide-react';
 import NavigationTabs from '@/components/NavigationTabs';
 import { Input } from '@/components/ui/input';
-
-interface ChatData {
-  id: number;
-  title: string;
-  lastMessage: string;
-  time: string;
-  unread: number;
-  type: 'regular' | 'course' | 'team';
-  courseCode?: string;
-}
+import { getRegularChats, getCourseChats, getTeamChats } from '@/utils/dataLoader';
 
 const InstructorChats: React.FC = () => {
   const navigate = useNavigate();
@@ -24,7 +15,6 @@ const InstructorChats: React.FC = () => {
   const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'all');
   
   useEffect(() => {
-    // Set the tab from the URL on mount
     const tab = searchParams.get('tab');
     if (tab) {
       setActiveTab(tab);
@@ -36,81 +26,9 @@ const InstructorChats: React.FC = () => {
     setSearchParams({ tab: value });
   };
   
-  const allChats: ChatData[] = [
-    {
-      id: 1,
-      title: "Study Group 1",
-      lastMessage: "Hey everyone, when's our next meeting?",
-      time: "2h ago",
-      unread: 3,
-      type: 'regular'
-    },
-    {
-      id: 2,
-      title: "Study Group 2",
-      lastMessage: "I finished the assignment, anyone need help?",
-      time: "3h ago",
-      unread: 1,
-      type: 'regular'
-    },
-    {
-      id: 3,
-      title: "Study Group 3",
-      lastMessage: "Let's meet in the library at 5pm",
-      time: "Yesterday",
-      unread: 0,
-      type: 'regular'
-    }
-  ];
-  
-  const courseChats: ChatData[] = [
-    {
-      id: 5,
-      title: "CS101 Class Chat",
-      lastMessage: "Prof: Don't forget your homework is due tomorrow!",
-      time: "5h ago",
-      unread: 1,
-      type: 'course'
-    },
-    {
-      id: 6,
-      title: "CS201 Class Chat",
-      lastMessage: "Does anyone understand question 3?",
-      time: "1d ago",
-      unread: 0,
-      type: 'course'
-    }
-  ];
-
-  const teamChats: ChatData[] = [
-    {
-      id: 7,
-      title: "CS101 Project Team A",
-      lastMessage: "We're making good progress on the database design",
-      time: "3h ago",
-      unread: 2,
-      type: 'team',
-      courseCode: "CS101"
-    },
-    {
-      id: 8,
-      title: "CS201 Team Discussion",
-      lastMessage: "Can someone review my code before I submit?",
-      time: "5h ago",
-      unread: 0,
-      type: 'team',
-      courseCode: "CS201"
-    },
-    {
-      id: 9,
-      title: "CS101 Final Project Team",
-      lastMessage: "I've uploaded the documentation to the shared folder",
-      time: "Yesterday",
-      unread: 1,
-      type: 'team',
-      courseCode: "CS101"
-    }
-  ];
+  const allChats = getRegularChats();
+  const courseChats = getCourseChats();
+  const teamChats = getTeamChats();
   
   const handleChatClick = (chatId: number) => {
     navigate(`/chats/${chatId}`);

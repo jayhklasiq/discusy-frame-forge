@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   Card,
@@ -33,76 +32,14 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Building2, Plus, Search } from 'lucide-react';
-import { Department } from '@/types/admin';
+import { getDepartments } from '@/utils/dataLoader';
 import { useForm } from 'react-hook-form';
 
 const AdminDepartments: React.FC = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   
-  // Mock data for demonstration
-  const departments: Department[] = [
-    {
-      id: 1,
-      name: 'Computer Science',
-      code: 'CS',
-      description: 'Department of Computer Science and Software Engineering',
-      headOfDepartment: 'Prof. Williams',
-      totalCourses: 12,
-      totalInstructors: 8,
-      totalStudents: 240
-    },
-    {
-      id: 2,
-      name: 'Business Administration',
-      code: 'BUS',
-      description: 'Department of Business Administration and Management',
-      headOfDepartment: 'Prof. Johnson',
-      totalCourses: 15,
-      totalInstructors: 10,
-      totalStudents: 320
-    },
-    {
-      id: 3,
-      name: 'Engineering',
-      code: 'ENG',
-      description: 'Department of Engineering and Applied Sciences',
-      headOfDepartment: 'Prof. Smith',
-      totalCourses: 18,
-      totalInstructors: 12,
-      totalStudents: 350
-    },
-    {
-      id: 4,
-      name: 'Arts',
-      code: 'ART',
-      description: 'Department of Arts and Humanities',
-      headOfDepartment: 'Prof. Davis',
-      totalCourses: 14,
-      totalInstructors: 9,
-      totalStudents: 180
-    },
-    {
-      id: 5,
-      name: 'Medicine',
-      code: 'MED',
-      description: 'Department of Medicine and Health Sciences',
-      headOfDepartment: 'Prof. Wilson',
-      totalCourses: 20,
-      totalInstructors: 15,
-      totalStudents: 150
-    },
-    {
-      id: 6,
-      name: 'Law',
-      code: 'LAW',
-      description: 'Department of Law and Legal Studies',
-      headOfDepartment: 'Prof. Taylor',
-      totalCourses: 10,
-      totalInstructors: 7,
-      totalStudents: 120
-    },
-  ];
+  const departments = getDepartments();
 
   const filteredDepartments = departments
     .filter(department => 
@@ -124,7 +61,6 @@ const AdminDepartments: React.FC = () => {
     console.log('New department data:', data);
     setIsAddDialogOpen(false);
     form.reset();
-    // In a real app, you would add this department to your database
   };
 
   return (

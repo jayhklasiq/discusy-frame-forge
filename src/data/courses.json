@@ -1,0 +1,111 @@
+
+{
+  "current": [
+    {
+      "id": 1,
+      "title": "Introduction to Computer Science",
+      "instructor": "Prof. Williams",
+      "code": "CS101",
+      "schedule": "Mon, Wed, Fri 10:00 AM - 11:30 AM",
+      "nextClass": "Mon, 10 AM",
+      "semester": "Spring 2025",
+      "enrolledStudents": 32,
+      "department": "Computer Science",
+      "activeChats": 8,
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "title": "Data Structures and Algorithms",
+      "instructor": "Prof. Johnson",
+      "code": "CS201",
+      "schedule": "Tue, Thu 1:00 PM - 3:00 PM",
+      "nextClass": "Tue, 1 PM",
+      "semester": "Spring 2025",
+      "enrolledStudents": 28,
+      "department": "Computer Science",
+      "activeChats": 6,
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "title": "Database Systems",
+      "instructor": "Prof. Garcia",
+      "code": "CS301",
+      "schedule": "Mon, Wed 3:30 PM - 5:00 PM",
+      "nextClass": "Mon, 3:30 PM",
+      "semester": "Spring 2025",
+      "enrolledStudents": 24,
+      "department": "Computer Science",
+      "activeChats": 5,
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "title": "Web Development",
+      "instructor": "Prof. Taylor",
+      "code": "CS401",
+      "schedule": "Thu, Fri 9:00 AM - 11:00 AM",
+      "nextClass": "Thu, 9 AM",
+      "semester": "Spring 2025",
+      "enrolledStudents": 30,
+      "department": "Computer Science",
+      "activeChats": 7,
+      "status": "active"
+    },
+    {
+      "id": 5,
+      "title": "Marketing Fundamentals",
+      "code": "BUS101",
+      "department": "Business",
+      "instructor": "Prof. Smith",
+      "semester": "Fall 2025",
+      "schedule": "Mon, Wed 2:00 PM - 3:30 PM",
+      "nextClass": "Mon, 2 PM",
+      "enrolledStudents": 45,
+      "activeChats": 10,
+      "status": "upcoming"
+    }
+  ],
+  "past": [
+    {
+      "id": 6,
+      "title": "Advanced Algorithms",
+      "instructor": "Prof. Smith",
+      "code": "CS301",
+      "schedule": "Tue, Thu 2:00 PM - 4:00 PM",
+      "nextClass": "N/A",
+      "semester": "Fall 2024",
+      "enrolledStudents": 26,
+      "department": "Computer Science",
+      "activeChats": 3,
+      "status": "completed"
+    },
+    {
+      "id": 7,
+      "title": "Operating Systems",
+      "instructor": "Prof. Davis",
+      "code": "CS402",
+      "schedule": "Mon, Wed, Fri 11:00 AM - 12:30 PM",
+      "nextClass": "N/A",
+      "semester": "Fall 2024",
+      "enrolledStudents": 22,
+      "department": "Computer Science",
+      "activeChats": 2,
+      "status": "completed"
+    },
+    {
+      "id": 8,
+      "title": "Art History",
+      "code": "ART202",
+      "department": "Arts",
+      "instructor": "Prof. Davis",
+      "semester": "Spring 2024",
+      "schedule": "Tue, Thu 1:00 PM - 2:30 PM",
+      "nextClass": "N/A",
+      "enrolledStudents": 35,
+      "activeChats": 5,
+      "status": "completed"
+    }
+  ]
+}

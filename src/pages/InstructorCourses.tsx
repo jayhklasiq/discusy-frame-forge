@@ -13,17 +13,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BookOpen, Clock, Users, Calendar } from 'lucide-react';
 import NavigationTabs from '@/components/NavigationTabs';
-
-interface CourseDetails {
-  id: number;
-  title: string;
-  instructor: string;
-  code: string;
-  schedule: string;
-  nextClass: string;
-  semester: string;
-  enrolledStudents: number;
-}
+import { getCurrentCourses, getStudents } from '@/utils/dataLoader';
+import { CourseDetails } from '@/types/course';
 
 interface Student {
   id: number;
@@ -38,49 +29,8 @@ const InstructorCourses: React.FC = () => {
   const [selectedCourse, setSelectedCourse] = useState<CourseDetails | null>(null);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   
-  const courses: CourseDetails[] = [
-    {
-      id: 1,
-      title: "Introduction to Computer Science",
-      instructor: "Prof. Williams",
-      code: "CS101",
-      schedule: "Mon, Wed, Fri 10:00 AM - 11:30 AM",
-      nextClass: "Mon, 10 AM",
-      semester: "Spring 2025",
-      enrolledStudents: 32
-    },
-    {
-      id: 2,
-      title: "Data Structures and Algorithms",
-      instructor: "Prof. Johnson",
-      code: "CS201",
-      schedule: "Tue, Thu 1:00 PM - 3:00 PM",
-      nextClass: "Tue, 1 PM",
-      semester: "Spring 2025",
-      enrolledStudents: 28
-    },
-    {
-      id: 3,
-      title: "Database Systems",
-      instructor: "Prof. Garcia",
-      code: "CS301",
-      schedule: "Mon, Wed 3:30 PM - 5:00 PM",
-      nextClass: "Mon, 3:30 PM",
-      semester: "Spring 2025",
-      enrolledStudents: 24
-    }
-  ];
-  
-  const students: Student[] = [
-    { id: 1, name: "John Smith", year: "3rd year", degree: "Computer Science" },
-    { id: 2, name: "Emma Johnson", year: "2nd year", degree: "Computer Science" },
-    { id: 3, name: "Michael Brown", year: "4th year", degree: "Computer Science" },
-    { id: 4, name: "Olivia Davis", year: "1st year", degree: "Computer Engineering" },
-    { id: 5, name: "William Wilson", year: "3rd year", degree: "Information Systems" },
-    { id: 6, name: "Sophia Martinez", year: "2nd year", degree: "Computer Science" },
-    { id: 7, name: "James Taylor", year: "4th year", degree: "Data Science" },
-    { id: 8, name: "Isabella Thomas", year: "3rd year", degree: "Computer Science" },
-  ];
+  const courses = getCurrentCourses();
+  const students = getStudents();
   
   const handleViewDetails = (course: CourseDetails) => {
     setSelectedCourse(course);
@@ -94,8 +44,6 @@ const InstructorCourses: React.FC = () => {
   
   const handleViewStudentProfile = (student: Student) => {
     setSelectedStudent(student);
-    // In a real application, you would navigate to the student's profile
-    // For now, we'll just close the dialog
     setShowStudents(false);
   };
   
@@ -218,7 +166,7 @@ const InstructorCourses: React.FC = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {students.map((student) => (
+                {students.slice(0, 8).map((student) => (
                   <TableRow 
                     key={student.id}
                     className="cursor-pointer hover:bg-gray-100"

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   Card,
@@ -34,7 +33,7 @@ import {
 } from '@/components/ui/form';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { UserCog, Plus, Search, Filter } from 'lucide-react';
-import { AdminInstructor } from '@/types/admin';
+import { getInstructors } from '@/utils/dataLoader';
 import { useForm } from 'react-hook-form';
 
 const AdminInstructors: React.FC = () => {
@@ -42,59 +41,7 @@ const AdminInstructors: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   
-  // Mock data for demonstration
-  const instructors: AdminInstructor[] = [
-    {
-      id: 1,
-      name: 'Dr. Sarah Williams',
-      email: 'sarah.williams@university.edu',
-      department: 'Computer Science',
-      coursesAssigned: 3,
-      activeChats: 8,
-      joinedDate: '2022-09-01',
-      status: 'active'
-    },
-    {
-      id: 2,
-      name: 'Prof. James Johnson',
-      email: 'james.johnson@university.edu',
-      department: 'Computer Science',
-      coursesAssigned: 2,
-      activeChats: 5,
-      joinedDate: '2023-01-15',
-      status: 'active'
-    },
-    {
-      id: 3,
-      name: 'Dr. Michael Smith',
-      email: 'michael.smith@university.edu',
-      department: 'Business',
-      coursesAssigned: 4,
-      activeChats: 12,
-      joinedDate: '2021-08-20',
-      status: 'active'
-    },
-    {
-      id: 4,
-      name: 'Prof. Emily Davis',
-      email: 'emily.davis@university.edu',
-      department: 'Arts',
-      coursesAssigned: 3,
-      activeChats: 6,
-      joinedDate: '2022-02-10',
-      status: 'inactive'
-    },
-    {
-      id: 5,
-      name: 'Dr. Robert Brown',
-      email: 'robert.brown@university.edu',
-      department: 'Engineering',
-      coursesAssigned: 0,
-      activeChats: 0,
-      joinedDate: '2023-05-05',
-      status: 'pending'
-    },
-  ];
+  const instructors = getInstructors();
 
   const filteredInstructors = instructors
     .filter(instructor => instructor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -115,7 +62,6 @@ const AdminInstructors: React.FC = () => {
     console.log('New instructor data:', data);
     setIsAddDialogOpen(false);
     form.reset();
-    // In a real app, you would add this instructor to your database
   };
 
   const getInitials = (name: string) => {
@@ -189,7 +135,7 @@ const AdminInstructors: React.FC = () => {
                     <TableCell>
                       <div className="flex items-center gap-3">
                         <Avatar>
-                          <AvatarImage src={instructor.profileImage} />
+                          <AvatarImage src={instructor.avatar} />
                           <AvatarFallback>{getInitials(instructor.name)}</AvatarFallback>
                         </Avatar>
                         <div>

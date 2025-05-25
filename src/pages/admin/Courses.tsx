@@ -39,7 +39,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { BookOpen, Plus, Search, Filter, Pencil, Eye } from 'lucide-react';
-import { AdminCourse } from '@/types/admin';
+import { getAllCourses } from '@/utils/dataLoader';
 import { useForm } from 'react-hook-form';
 
 const AdminCourses: React.FC = () => {
@@ -47,53 +47,7 @@ const AdminCourses: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   
-  // Mock data for demonstration
-  const courses: AdminCourse[] = [
-    {
-      id: 1,
-      title: 'Introduction to Computer Science',
-      code: 'CS101',
-      department: 'Computer Science',
-      instructor: 'Prof. Williams',
-      semester: 'Spring 2025',
-      enrolledStudents: 32,
-      activeChats: 8,
-      status: 'active'
-    },
-    {
-      id: 2,
-      title: 'Data Structures and Algorithms',
-      code: 'CS201',
-      department: 'Computer Science',
-      instructor: 'Prof. Johnson',
-      semester: 'Spring 2025',
-      enrolledStudents: 28,
-      activeChats: 6,
-      status: 'active'
-    },
-    {
-      id: 3,
-      title: 'Marketing Fundamentals',
-      code: 'BUS101',
-      department: 'Business',
-      instructor: 'Prof. Smith',
-      semester: 'Fall 2025',
-      enrolledStudents: 45,
-      activeChats: 10,
-      status: 'upcoming'
-    },
-    {
-      id: 4,
-      title: 'Art History',
-      code: 'ART202',
-      department: 'Arts',
-      instructor: 'Prof. Davis',
-      semester: 'Spring 2024',
-      enrolledStudents: 35,
-      activeChats: 5,
-      status: 'completed'
-    },
-  ];
+  const courses = getAllCourses();
 
   const filteredCourses = courses
     .filter(course => course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -116,7 +70,6 @@ const AdminCourses: React.FC = () => {
     console.log('New course data:', data);
     setIsAddDialogOpen(false);
     form.reset();
-    // In a real app, you would add this course to your database
   };
 
   return (
@@ -187,7 +140,7 @@ const AdminCourses: React.FC = () => {
                     <TableCell>{course.instructor}</TableCell>
                     <TableCell>{course.semester}</TableCell>
                     <TableCell>{course.enrolledStudents}</TableCell>
-                    <TableCell>{course.activeChats}</TableCell>
+                    <TableCell>{course.activeChats || 0}</TableCell>
                     <TableCell>
                       <span className={`px-2 py-1 text-xs rounded-full capitalize ${
                         course.status === 'active' ? 'bg-green-100 text-green-800' :

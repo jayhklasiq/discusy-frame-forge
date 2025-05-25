@@ -18,33 +18,10 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import { AnalyticsData } from '@/types/admin';
+import { getAnalyticsData } from '@/utils/dataLoader';
 
 const AdminDashboard: React.FC = () => {
-  // Mock data for demonstration
-  const analyticsData: AnalyticsData = {
-    totalStudents: 1250,
-    totalInstructors: 48,
-    totalCourses: 75,
-    totalDepartments: 6,
-    totalChats: 326,
-    activeUsers: 890,
-    chatsByDepartment: [
-      { department: 'Computer Science', count: 120 },
-      { department: 'Business', count: 85 },
-      { department: 'Engineering', count: 65 },
-      { department: 'Arts', count: 35 },
-      { department: 'Medicine', count: 15 },
-      { department: 'Law', count: 6 },
-    ],
-    courseEngagement: [
-      { course: 'CS101', students: 120, chats: 45 },
-      { course: 'BUS201', students: 85, chats: 32 },
-      { course: 'ENG150', students: 65, chats: 28 },
-      { course: 'ART102', students: 42, chats: 15 },
-      { course: 'MED105', students: 28, chats: 10 },
-    ],
-  };
+  const analyticsData = getAnalyticsData();
 
   return (
     <div className="p-6">

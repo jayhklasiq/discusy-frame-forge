@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowLeft, Send, MoreVertical, Users } from 'lucide-react';
 import NavigationTabs from '@/components/NavigationTabs';
+import { getChatById, getMessagesByChatId } from '@/utils/dataLoader';
 
 interface Message {
   id: number;
@@ -27,59 +28,25 @@ const ChatRoom: React.FC = () => {
   const [message, setMessage] = useState('');
   const [chatData, setChatData] = useState<ChatRoomData | null>(null);
   
-  // Mock data for the chat
   useEffect(() => {
-    // In a real app, we would fetch this data from an API
-    const mockChat: ChatRoomData = {
-      id: Number(chatId),
-      title: `Study Group ${chatId}`,
-      participants: ['You', 'John Doe', 'Jane Smith', 'Alex Johnson'],
-      messages: [
-        {
-          id: 1,
-          text: "Hey everyone! How's the studying going?",
-          sender: "John Doe",
-          timestamp: "Yesterday, 2:30 PM",
-          isCurrentUser: false
-        },
-        {
-          id: 2,
-          text: "I'm having trouble with question 3 on the assignment.",
-          sender: "Jane Smith",
-          timestamp: "Yesterday, 2:35 PM",
-          isCurrentUser: false
-        },
-        {
-          id: 3,
-          text: "I can help with that! Let's meet in the library at 5pm?",
-          sender: "You",
-          timestamp: "Yesterday, 2:40 PM",
-          isCurrentUser: true
-        },
-        {
-          id: 4,
-          text: "That works for me!",
-          sender: "Jane Smith",
-          timestamp: "Yesterday, 2:42 PM",
-          isCurrentUser: false
-        },
-        {
-          id: 5,
-          text: "I'll be there too. I've already finished most of the assignment.",
-          sender: "Alex Johnson",
-          timestamp: "Yesterday, 3:00 PM",
-          isCurrentUser: false
-        }
-      ]
-    };
+    if (!chatId) return;
     
-    setChatData(mockChat);
+    const chat = getChatById(Number(chatId));
+    const messages = getMessagesByChatId(chatId);
+    
+    if (chat) {
+      setChatData({
+        id: chat.id,
+        title: chat.title,
+        participants: chat.participants || ['You', 'John Doe', 'Jane Smith', 'Alex Johnson'],
+        messages
+      });
+    }
   }, [chatId]);
   
   const handleSendMessage = () => {
     if (!message.trim() || !chatData) return;
     
-    // In a real app, we would send this to an API
     const newMessage: Message = {
       id: chatData.messages.length + 1,
       text: message,

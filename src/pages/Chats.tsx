@@ -7,72 +7,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Search, Plus, MessageSquare, Users } from 'lucide-react';
 import NavigationTabs from '@/components/NavigationTabs';
 import { Input } from '@/components/ui/input';
-
-interface ChatData {
-  id: number;
-  title: string;
-  lastMessage: string;
-  time: string;
-  unread: number;
-  type: 'regular' | 'course';
-}
+import { getRegularChats, getCourseChats } from '@/utils/dataLoader';
 
 const Chats: React.FC = () => {
   const navigate = useNavigate();
   
-  const allChats: ChatData[] = [
-    {
-      id: 1,
-      title: "Study Group 1",
-      lastMessage: "Hey everyone, when's our next meeting?",
-      time: "2h ago",
-      unread: 3,
-      type: 'regular'
-    },
-    {
-      id: 2,
-      title: "Study Group 2",
-      lastMessage: "I finished the assignment, anyone need help?",
-      time: "3h ago",
-      unread: 1,
-      type: 'regular'
-    },
-    {
-      id: 3,
-      title: "Study Group 3",
-      lastMessage: "Let's meet in the library at 5pm",
-      time: "Yesterday",
-      unread: 0,
-      type: 'regular'
-    },
-    {
-      id: 4,
-      title: "Study Group 4",
-      lastMessage: "Can someone share their notes from today?",
-      time: "2d ago",
-      unread: 2,
-      type: 'regular'
-    }
-  ];
-  
-  const courseChats: ChatData[] = [
-    {
-      id: 5,
-      title: "CS101 Class Chat",
-      lastMessage: "Prof: Don't forget your homework is due tomorrow!",
-      time: "5h ago",
-      unread: 1,
-      type: 'course'
-    },
-    {
-      id: 6,
-      title: "CS201 Class Chat",
-      lastMessage: "Does anyone understand question 3?",
-      time: "1d ago",
-      unread: 0,
-      type: 'course'
-    }
-  ];
+  const allChats = getRegularChats();
+  const courseChats = getCourseChats();
   
   const handleChatClick = (chatId: number) => {
     navigate(`/chats/${chatId}`);
