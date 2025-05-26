@@ -5,16 +5,20 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactNode } from "react";
 
 const queryClient = new QueryClient();
 
-export default function App() {
+interface AppProps {
+	children: ReactNode;
+}
+
+export default function App({ children }: AppProps) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<TooltipProvider>
 				<div className="min-h-screen">
-					{/* Your app content will go here */}
-					<h1>Discusy App</h1>
+					{children}
 				</div>
 				<Toaster />
 				<Sonner />
