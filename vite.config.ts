@@ -8,14 +8,14 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": path.resolve(__dirname, "."),
       "@/components": path.resolve(__dirname, "./components"),
       "@/lib": path.resolve(__dirname, "./lib"),
       "@/hooks": path.resolve(__dirname, "./hooks"),
-      "@/utils": path.resolve(__dirname, "./utils"),
+      "@/src": path.resolve(__dirname, "./src"),
     },
   },
   server: {
-    port: 3000,
+    port: 8080,
   },
 })

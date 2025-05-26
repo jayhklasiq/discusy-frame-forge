@@ -1,29 +1,70 @@
 
-import usersData from '@/data/users.json';
-import coursesData from '@/data/courses.json';
-import chatsData from '@/data/chats.json';
-import messagesData from '@/data/messages.json';
-import departmentsData from '@/data/departments.json';
-import analyticsData from '@/data/analytics.json';
+import usersData from '@/src/data/users.json';
+import coursesData from '@/src/data/courses.json';
+import chatsData from '@/src/data/chats.json';
+import messagesData from '@/src/data/messages.json';
+import departmentsData from '@/src/data/departments.json';
+import analyticsData from '@/src/data/analytics.json';
+
+// Type definitions
+interface Student {
+  id: number;
+  name: string;
+  email: string;
+  avatar: string;
+  university: string;
+  major: string;
+  yearOfStudy: string;
+}
+
+interface Instructor {
+  id: number;
+  name: string;
+  email: string;
+  avatar: string;
+  department: string;
+}
+
+interface Course {
+  id: number;
+  name: string;
+  code: string;
+  instructor: string;
+  schedule: string;
+}
+
+interface Chat {
+  id: number;
+  name: string;
+  lastMessage: string;
+  timestamp: string;
+}
+
+interface Department {
+  id: number;
+  name: string;
+  faculty: number;
+  students: number;
+}
 
 // Users
-export const getStudents = () => usersData.students;
-export const getInstructors = () => usersData.instructors;
-export const getStudentById = (id: number) => usersData.students.find(student => student.id === id);
-export const getInstructorById = (id: number) => usersData.instructors.find(instructor => instructor.id === id);
+export const getStudents = (): Student[] => usersData.students;
+export const getInstructors = (): Instructor[] => usersData.instructors;
+export const getStudentById = (id: number): Student | undefined => usersData.students.find((student: Student) => student.id === id);
+export const getInstructorById = (id: number): Instructor | undefined => usersData.instructors.find((instructor: Instructor) => instructor.id === id);
 
 // Courses
-export const getCurrentCourses = () => coursesData.current;
-export const getPastCourses = () => coursesData.past;
-export const getAllCourses = () => [...coursesData.current, ...coursesData.past];
-export const getCourseById = (id: number) => getAllCourses().find(course => course.id === id);
+export const getCurrentCourses = (): Course[] => coursesData.current;
+export const getPastCourses = (): Course[] => coursesData.past;
+export const getAllCourses = (): Course[] => [...coursesData.current, ...coursesData.past];
+export const getCourseById = (id: number): Course | undefined => getAllCourses().find((course: Course) => course.id === id);
 
 // Chats
-export const getRegularChats = () => chatsData.regular;
-export const getCourseChats = () => chatsData.course;
-export const getTeamChats = () => chatsData.team;
-export const getAllChats = () => [...chatsData.regular, ...chatsData.course, ...chatsData.team];
-export const getChatById = (id: number) => getAllChats().find(chat => chat.id === id);
+export const getRegularChats = (): Chat[] => chatsData.regular;
+export const getCourseChats = (): Chat[] => chatsData.course;
+export const getTeamChats = (): Chat[] => chatsData.team;
+export const getAllChats = (): Chat[] => [...chatsData.regular, ...chatsData.course, ...chatsData.team];
+export const getChatById = (id: number): Chat | undefined => getAllChats().find((chat: Chat) => chat.id === id);
 
 // Messages
 export const getMessagesByChatId = (chatId: string | number) => {
@@ -32,8 +73,8 @@ export const getMessagesByChatId = (chatId: string | number) => {
 };
 
 // Departments
-export const getDepartments = () => departmentsData.departments;
-export const getDepartmentById = (id: number) => departmentsData.departments.find(dept => dept.id === id);
+export const getDepartments = (): Department[] => departmentsData.departments;
+export const getDepartmentById = (id: number): Department | undefined => departmentsData.departments.find((dept: Department) => dept.id === id);
 
 // Analytics
 export const getAnalyticsData = () => analyticsData;
@@ -49,8 +90,11 @@ export const getCurrentUser = () => ({
 });
 
 // Stats data
-export const getUserStats = () => [
-  { label: "Courses", value: "4", icon: require('lucide-react').BookOpen },
-  { label: "Chats", value: "12", icon: require('lucide-react').MessageSquare },
-  { label: "Study Hours", value: "48", icon: require('lucide-react').Clock }
-];
+export const getUserStats = () => {
+  const { BookOpen, MessageSquare, Clock } = require('lucide-react');
+  return [
+    { label: "Courses", value: "4", icon: BookOpen },
+    { label: "Chats", value: "12", icon: MessageSquare },
+    { label: "Study Hours", value: "48", icon: Clock }
+  ];
+};

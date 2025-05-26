@@ -3,38 +3,15 @@
   "1": [
     {
       "id": 1,
-      "text": "Hey everyone! How's the studying going?",
-      "sender": "John Doe",
-      "timestamp": "Yesterday, 2:30 PM",
-      "isCurrentUser": false
+      "senderId": 1,
+      "content": "Hey everyone, ready for tomorrow's study session?",
+      "timestamp": "2024-01-15T10:00:00Z"
     },
     {
-      "id": 2,
-      "text": "I'm having trouble with question 3 on the assignment.",
-      "sender": "Jane Smith",
-      "timestamp": "Yesterday, 2:35 PM",
-      "isCurrentUser": false
-    },
-    {
-      "id": 3,
-      "text": "I can help with that! Let's meet in the library at 5pm?",
-      "sender": "You",
-      "timestamp": "Yesterday, 2:40 PM",
-      "isCurrentUser": true
-    },
-    {
-      "id": 4,
-      "text": "That works for me!",
-      "sender": "Jane Smith",
-      "timestamp": "Yesterday, 2:42 PM",
-      "isCurrentUser": false
-    },
-    {
-      "id": 5,
-      "text": "I'll be there too. I've already finished most of the assignment.",
-      "sender": "Alex Johnson",
-      "timestamp": "Yesterday, 3:00 PM",
-      "isCurrentUser": false
+      "id": 2, 
+      "senderId": 2,
+      "content": "Yes! I'll bring my notes.",
+      "timestamp": "2024-01-15T10:30:00Z"
     }
   ]
 }
