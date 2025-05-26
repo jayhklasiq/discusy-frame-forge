@@ -3,11 +3,11 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function HomePage() {
+export default function Home() {
 	const router = useRouter();
 
 	useEffect(() => {
-		router.push("/splash");
+		router.push("/signup");
 	}, [router]);
 
 	return null; // This page will immediately redirect, so no need to render anything

@@ -2,92 +2,89 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import DiscusyLogo from "@/components/DiscusyLogo";
-
-type AuthMode = "sso" | "login";
+import { Label } from "@/components/ui/label";
+import { Icons } from "@/components/ui/icons";
 
 export default function LoginPage() {
 	const router = useRouter();
-	const [authMode, setAuthMode] = useState<AuthMode>("sso");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [rememberMe, setRememberMe] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
-	const handleSSOSubmit = () => {
-		console.log("Submitting SSO with domain:", email);
-		// This would redirect to university login in a real app
-		// For demo purposes we'll go straight to dashboard
-		router.push("/dashboard");
-	};
+	async function onSubmit(event: React.FormEvent) {
+		event.preventDefault();
+		setIsLoading(true);
 
-	const handleLoginSubmit = () => {
-		console.log("Logging in with:", email, password);
-		router.push("/dashboard");
-	};
+		// Simulate API call
+		setTimeout(() => {
+			setIsLoading(false);
+			router.push("/dashboard");
+		}, 1000);
+	}
 
 	return (
-		<div className="min-h-screen bg-discusy-blue p-6 flex flex-col">
-			<div className="flex-1 flex flex-col items-center justify-center">
-				<div className="w-full max-w-md">
-					<div className="flex flex-col items-center mb-8">
-						<DiscusyLogo className="mb-6" />
-						<p className="text-white text-xl">Learn together, grow together</p>
-					</div>
-
-					{authMode === "sso" ? (
-						<div className="w-full animate-fade-in">
-							<h2 className="text-white text-2xl font-semibold mb-4 text-center">Sign in with SSO</h2>
-							<div className="space-y-4">
-								<div>
-									<label htmlFor="domain" className="text-white mb-1 block">
-										Company domain
-									</label>
-									<Input id="domain" type="text" placeholder="youruniversity.edu" className="bg-white/90 py-6" value={email} onChange={(e) => setEmail(e.target.value)} />
-								</div>
-
-								<Button className="w-full py-6 bg-gray-200 text-discusy-blue hover:bg-gray-300" onClick={handleSSOSubmit}>
-									Continue
-								</Button>
-
-								<button className="text-white hover:underline w-full text-center mt-4" onClick={() => router.push("/school-info")}>
-									I do not know my school domain
-								</button>
-							</div>
-						</div>
-					) : (
-						<div className="w-full animate-fade-in">
-							<h2 className="text-white text-2xl font-semibold mb-4 text-center">Login</h2>
-							<div className="space-y-4">
-								<div>
-									<Input type="email" placeholder="Enter your email" className="bg-white/90 py-6" value={email} onChange={(e) => setEmail(e.target.value)} />
-								</div>
-								<div>
-									<Input type="password" placeholder="Enter your password" className="bg-white/90 py-6" value={password} onChange={(e) => setPassword(e.target.value)} />
-								</div>
-
-								<div className="flex items-center space-x-2">
-									<Checkbox id="remember" checked={rememberMe} onCheckedChange={(checked) => setRememberMe(!!checked)} />
-									<label htmlFor="remember" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-white">
-										Remember me?
-									</label>
-								</div>
-
-								<Button className="w-full py-6 bg-white text-discusy-blue hover:bg-white/90" onClick={handleLoginSubmit}>
-									Login
-								</Button>
-
-								<button className="text-white/70 hover:underline w-full text-center mt-2">Forgot password?</button>
-
-								<button className="text-white hover:underline w-full text-center mt-4" onClick={() => setAuthMode("sso")}>
-									Sign in with school domain instead
-								</button>
-							</div>
-						</div>
-					)}
+		<div className="container flex h-screen w-screen flex-col items-center justify-center">
+			<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+				<div className="flex flex-col space-y-2 text-center">
+					<h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
+					<p className="text-sm text-muted-foreground">Enter your email to sign in to your account</p>
 				</div>
+
+				<Card>
+					<CardHeader>
+						<CardTitle>Sign In</CardTitle>
+						<CardDescription>Choose your preferred sign in method</CardDescription>
+					</CardHeader>
+					<CardContent className="grid gap-4">
+						<div className="grid grid-cols-2 gap-6">
+							<Button variant="outline" disabled={isLoading}>
+								{isLoading ? <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> : <Icons.gitHub className="mr-2 h-4 w-4" />} GitHub
+							</Button>
+							<Button variant="outline" disabled={isLoading}>
+								{isLoading ? <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> : <Icons.google className="mr-2 h-4 w-4" />} Google
+							</Button>
+						</div>
+						<div className="relative">
+							<div className="absolute inset-0 flex items-center">
+								<span className="w-full border-t" />
+							</div>
+							<div className="relative flex justify-center text-xs uppercase">
+								<span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+							</div>
+						</div>
+						<form onSubmit={onSubmit}>
+							<div className="grid gap-4">
+								<div className="grid gap-2">
+									<Label htmlFor="email">Email</Label>
+									<Input id="email" placeholder="name@example.com" type="email" autoCapitalize="none" autoComplete="email" autoCorrect="off" disabled={isLoading} required />
+								</div>
+								<div className="grid gap-2">
+									<div className="flex items-center justify-between">
+										<Label htmlFor="password">Password</Label>
+										<Link href="/forgot-password" className="text-sm text-muted-foreground hover:text-primary">
+											Forgot password?
+										</Link>
+									</div>
+									<Input id="password" type="password" autoComplete="current-password" disabled={isLoading} required />
+								</div>
+								<Button disabled={isLoading}>
+									{isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+									Sign In
+								</Button>
+							</div>
+						</form>
+					</CardContent>
+					<CardFooter>
+						<div className="text-sm text-muted-foreground text-center w-full">
+							Don't have an account?{" "}
+							<Link href="/signup" className="underline underline-offset-4 hover:text-primary">
+								Sign up
+							</Link>
+						</div>
+					</CardFooter>
+				</Card>
 			</div>
 		</div>
 	);

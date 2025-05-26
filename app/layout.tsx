@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import App from "@/src/App";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Discusy",
-	description: "A modern discussion platform for education",
+	title: "Discusy - Modern Educational Discussions",
+	description: "A modern discussion platform for education.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body className={inter.className}>
-				<App>{children}</App>
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+					{children}
+				</ThemeProvider>
 			</body>
 		</html>
 	);
