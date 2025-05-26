@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,7 +11,7 @@ import NavigationTabs from "@/components/NavigationTabs";
 import { Input } from "@/components/ui/input";
 import { getRegularChats, getCourseChats, getTeamChats } from "@/utils/dataLoader";
 
-export default function InstructorChatsPage() {
+function InstructorChatsContent() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const [activeTab, setActiveTab] = useState(() => {
@@ -148,5 +149,13 @@ export default function InstructorChatsPage() {
 			{/* Navigation */}
 			<NavigationTabs />
 		</div>
+	);
+}
+
+export default function InstructorChatsPage() {
+	return (
+		<Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+			<InstructorChatsContent />
+		</Suspense>
 	);
 }
