@@ -1,18 +1,5 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/api/auth/login/route": "app/api/auth/login/route.js",
-  "/chats/[chatId]/page": "app/chats/[chatId]/page.js",
-  "/chats/page": "app/chats/page.js",
-  "/courses/page": "app/courses/page.js",
-  "/create-chat/page": "app/create-chat/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/help/page": "app/help/page.js",
-  "/instructor/chats/page": "app/instructor/chats/page.js",
-  "/instructor/dashboard/page": "app/instructor/dashboard/page.js",
-  "/page": "app/page.js",
-  "/profile/page": "app/profile/page.js",
-  "/settings/page": "app/settings/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/admin/page": "app/admin/page.js"
+  "/onboarding/page": "app/onboarding/page.js",
+  "/splash/page": "app/splash/page.js"
 }
