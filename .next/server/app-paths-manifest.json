@@ -13,6 +13,6 @@
   "/page": "app/page.js",
   "/profile/page": "app/profile/page.js",
   "/settings/page": "app/settings/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js"
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/page": "app/admin/page.js"
 }
