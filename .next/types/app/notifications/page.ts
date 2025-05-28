@@ -1,5 +1,10 @@
+<<<<<<< HEAD:.next/types/app/notifications/page.ts
 // File: C:\Users\joshv\Desktop\discusy-app\app\notifications\page.tsx
 import * as entry from '../../../../app/notifications/page.js'
+=======
+// File: /home/project/app/(auth)/signup/page.tsx
+import * as entry from '../../../../../app/(auth)/signup/page.js'
+>>>>>>> 34e623cca694ebc2f7523c865b34d2cc14a6c489:.next/types/app/(auth)/signup/page.ts
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
 type TEntry = typeof import('../../../../app/notifications/page.js')
