@@ -1,0 +1,20 @@
+{
+  "current": [
+    {
+      "id": 1,
+      "name": "Advanced Algorithms",
+      "code": "CS 401", 
+      "instructor": "Dr. Sarah Wilson",
+      "schedule": "Mon, Wed, Fri 10:00 AM"
+    }
+  ],
+  "past": [
+    {
+      "id": 2,
+      "name": "Data Structures",
+      "code": "CS 201",
+      "instructor": "Dr. Mike Chen",
+      "schedule": "Tue, Thu 2:00 PM"
+    }
+  ]
+}

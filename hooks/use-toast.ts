@@ -18,9 +18,7 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
-interface State {
-  toasts: ToasterToast[]
-}
+export type { ToasterToast }
 
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
@@ -28,6 +26,13 @@ const actionTypes = {
   DISMISS_TOAST: "DISMISS_TOAST",
   REMOVE_TOAST: "REMOVE_TOAST",
 } as const
+
+let count = 0
+
+function genId() {
+  count = (count + 1) % Number.MAX_SAFE_INTEGER
+  return count.toString()
+}
 
 type ActionType = typeof actionTypes
 
@@ -49,11 +54,8 @@ type Action =
       toastId?: ToasterToast["id"]
     }
 
-let count = 0
-
-function genId() {
-  count = (count + 1) % Number.MAX_SAFE_INTEGER
-  return count.toString()
+interface State {
+  toasts: ToasterToast[]
 }
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
@@ -171,7 +173,7 @@ function toast({ ...props }: Toast) {
   }
 }
 
-export function useToast() {
+function useToast() {
   const [state, setState] = React.useState<State>(memoryState)
 
   React.useEffect(() => {
@@ -191,4 +193,4 @@ export function useToast() {
   }
 }
 
-export { toast } 
+export { useToast, toast }

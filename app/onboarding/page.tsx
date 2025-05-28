@@ -43,12 +43,12 @@ export default function OnboardingPage() {
     if (currentStep < onboardingSteps.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      router.push("/auth/signup");
+      router.push("/login");
     }
   };
 
   const handleSkip = () => {
-    router.push("/auth/signup");
+    router.push("/login");
   };
 
   const currentStepData = onboardingSteps[currentStep];
@@ -99,7 +99,7 @@ export default function OnboardingPage() {
             onClick={handleSkip}
             className="text-muted-foreground"
           >
-            Skip
+            Skip to Sign In
           </Button>
           <Button onClick={handleNext}>
             {currentStep === onboardingSteps.length - 1 ? (

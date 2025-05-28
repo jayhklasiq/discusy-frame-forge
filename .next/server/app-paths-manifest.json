@@ -1,4 +1,10 @@
 {
-  "/page": "app/page.js",
-  "/(auth)/signup/page": "app/(auth)/signup/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/chats/page": "app/chats/page.js",
+  "/chats/[chatId]/page": "app/chats/[chatId]/page.js",
+  "/courses/page": "app/courses/page.js",
+  "/notifications/page": "app/notifications/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/create-chat/page": "app/create-chat/page.js"
 }

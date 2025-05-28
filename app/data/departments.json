@@ -1,0 +1,16 @@
+{
+  "departments": [
+    {
+      "id": 1,
+      "name": "Computer Science",
+      "faculty": 25,
+      "students": 450
+    },
+    {
+      "id": 2,
+      "name": "Mathematics", 
+      "faculty": 18,
+      "students": 320
+    }
+  ]
+}

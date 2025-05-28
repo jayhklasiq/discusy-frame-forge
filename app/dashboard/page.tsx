@@ -10,48 +10,59 @@ export default function DashboardPage() {
 	const router = useRouter();
 
 	return (
-		<div className="min-h-screen bg-gray-50 pb-16">
+		<div className="min-h-screen bg-background">
 			{/* Header */}
-			<header className="bg-discusy-blue text-white p-4">
-				<h1 className="text-xl font-bold">Dashboard</h1>
+			<header className="bg-primary text-background p-4">
+				<div className="flex items-center justify-between">
+					<h1 className="text-xl font-bold">Dashboard</h1>
+					<Button variant="ghost" className="text-muted-foreground">
+						Profile
+					</Button>
+				</div>
 			</header>
 
-			{/* Content */}
-			<div className="p-4">
-				<div className="mb-6">
-					<h2 className="text-lg font-semibold mb-3">Recent Chats</h2>
+			{/* Main Content */}
+			<main className="p-4 space-y-6">
+				{/* Recent Chats */}
+				<div className="space-y-4">
+					<h2 className="text-lg font-semibold">Recent Chats</h2>
 					<div className="space-y-3">
 						{[1, 2].map((item) => (
 							<Card key={item} className="shadow-sm">
-								<CardContent className="p-3 flex justify-between items-center">
+								<CardContent className="p-4 flex justify-between items-start">
 									<div>
 										<h3 className="font-medium">Group Chat {item}</h3>
-										<p className="text-sm text-gray-500">Last activity: 2h ago</p>
+										<p className="text-sm text-muted-foreground">Last activity: 2h ago</p>
 									</div>
-									<div className="flex items-center text-discusy-blue">
+									<div className="flex items-center text-primary">
 										<MessageSquare size={20} />
 										<span className="ml-1 text-sm">3</span>
 									</div>
 								</CardContent>
 							</Card>
 						))}
-						<Button variant="outline" className="w-full flex items-center justify-center gap-2" onClick={() => router.push("/create-chat")}>
-							<MessageSquare size={18} />
-							<span>Create New Chat</span>
-						</Button>
 					</div>
+					<Button 
+						variant="outline" 
+						className="w-full flex items-center justify-center gap-2"
+						onClick={() => router.push("/create-chat")}
+					>
+						<MessageSquare size={18} />
+						<span>Create New Chat</span>
+					</Button>
 				</div>
 
-				<div className="mb-6">
-					<h2 className="text-lg font-semibold mb-3">Upcoming Events</h2>
+				{/* Upcoming Events */}
+				<div className="space-y-4">
+					<h2 className="text-lg font-semibold">Upcoming Events</h2>
 					<div className="space-y-3">
 						{[1, 2].map((item) => (
 							<Card key={item} className="shadow-sm">
-								<CardContent className="p-3">
+								<CardContent className="p-4">
 									<div className="flex justify-between items-start">
 										<div>
 											<h3 className="font-medium">Study Session {item}</h3>
-											<p className="text-sm text-gray-500">Tomorrow at 2:00 PM</p>
+											<p className="text-sm text-muted-foreground">Tomorrow at 2:00 PM</p>
 										</div>
 										<Button variant="outline" size="sm">
 											Join
@@ -62,7 +73,7 @@ export default function DashboardPage() {
 						))}
 					</div>
 				</div>
-			</div>
+			</main>
 
 			{/* Navigation */}
 			<NavigationTabs />
